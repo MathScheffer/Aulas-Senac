@@ -1,0 +1,31 @@
+figure{
+	margin:40px;
+	width: 400px;
+	float: left;
+}
+img{
+	width: 100%;
+}
+#filtro1{
+	filter:grayscale(100%) blur(5px);
+}
+#filtro2{
+	filter:blur(5px);
+}
+#filtro3{
+	filter: brightness(150%);
+}
+#filtro4{
+	filter:contrast(40%);
+}
+#filtro5{
+	filter:invert(70%);
+}
+
+#filtro6{
+	filter:sepia(100%);
+}
+#filtro7{
+	filter:saturate(250%);
+}
+
