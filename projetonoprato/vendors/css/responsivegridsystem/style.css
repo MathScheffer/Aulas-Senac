@@ -1,3 +1,9 @@
+/*Config da row, segundo o arquivo de etapa 1 do github*/
+.row {
+	max-width: 1140px; /*Define o tamanho máximo da linha*/
+	margin: 0 auto 0 auto; /*Define que o container vai ficar centralizado*/
+	/*margin: 0 auto; maneira alternativa para a linha de cima*/
+ }
 /*  GRID OF TWO   ============================================================================= */
 
 
