@@ -1,3 +1,106 @@
-body{
-    background-color:blanchedalmond;
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box; 
+}
+html{
+   /* background-color:#fff;
+    color:#fff;*/
+    font-family: 'Lato','Arial', sans-serif;
+    font-weight: 300;
+    font-size:20px;
+    text-rendering:optimizeLegibility; 
+}
+header{
+    -webkit-background-composite:black;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.56)),url("https://images.pexels.com/photos/1161682/pexels-photo-1161682.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    /*background-repeat: no-repeat;*/
+    background-size:cover;
+    background-position: center;
+    height: 100vh;
+}
+h1{
+    margin:0 0 20px 0; /*t,e,b,d*/
+    color:#fff;
+    font-size:240%;
+    text-transform: uppercase;
+    word-spacing: 4px;
+    letter-spacing: 2px;
+}
+.hero-text-box{
+    position: absolute;
+    width: 1000px;
+    top:50%;
+    left:50%;
+    transform: translate(-62%,-50%);
+}
+
+.btn{
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 400;
+    text-decoration:none;
+    border-radius: 200px;
+    color:#fff;
+    transition: all 1.5s;
+}
+.btn-full{
+    background-color: #e67e22;
+    padding: 5px;
+    width: 215px;
+    text-align: center;
+    color:#fff;
+    border:1px solid #e67e22;
+    transition: all 0.5s;
+}
+.btn-ghost {
+    border: 1px solid #e67e22;
+    padding: 5px;
+    width: 215px;
+    text-align: center;
+    color: #e67e22;
+    transition: all 0.5s;
+}
+.btn:link,
+.btn:visited{
+    display: inline-block; /*para poder manusear links <a>*/
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius:200px;
+    color:#fff;
+}
+.btn-full:link,
+.btn-full:visited{
+    background-color: #e67e22;
+    border: 1px solid #e67e22;
+    color: #fff;
+}
+.btn-ghost:link,
+.btn-ghost:visited{
+    border: 1px solid #ddd;
+    color:#fff;
+}
+.btn:hover,
+.btn:active{
+   background-color:#e67e22;
+   
+
+}
+.btn-full:hover{
+    width: 240px;
+    padding-left:35px ;
+}
+.btn-full:active{
+    border:1px solid #e67e22;
+}
+.btn-ghost:hover{
+    width: 240px;
+    padding-left:35px ;  
+     
+}
+.btn-ghost:active{
+    border:1px solid rgba(56, 31, 17, 3);
+    font-weight: 500;
+    color:rgba(56, 31, 17, 0.733);
 }
