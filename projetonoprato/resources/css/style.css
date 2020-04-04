@@ -1,3 +1,4 @@
+
 *{
     margin:0;
     padding:0;
@@ -10,6 +11,16 @@ html{
     font-weight: 300;
     font-size:20px;
     text-rendering:optimizeLegibility; 
+}
+.clearfix{
+    zoom:1;
+}
+.clearfix:after{
+    content:'.';
+    clear:both;
+    display: block;
+    height: 0;
+    visibility: hidden;    
 }
 header{
     -webkit-background-composite:black;
@@ -79,14 +90,14 @@ h3{
     color:#fff;
     border:1px solid #e67e22;
     margin-right: 15px;
-    transition: all 0.5s;
+    transition: width 0.5s, color 0.3s;
 }
 .btn-ghost {
     border: 1px solid #e67e22;
     width: 220px;
     text-align: center;
     color: #e67e22;
-    transition: all 0.5s;
+    transition: width 0.5s, color 0.3s;
 }
 .btn:link,
 .btn:visited{
@@ -110,7 +121,7 @@ h3{
 }
 .btn:hover,
 .btn:active{
-   background-color:#e67e22;
+  /* background-color:#e67e22;*/
    
 
 }
@@ -120,18 +131,22 @@ h3{
     padding-right: 17.5px; 
 }
 .btn-full:active{
-    border:1px solid #e67e22;
+    border:1px solid rgba(56, 31, 17, 0.733);
+    color:rgba(56, 31, 17, 0.733);
+    font-weight: 350;
 }
 .btn-ghost:hover{
     width: 240px;
     padding-left:17.5px;
     padding-right: 17.5px;  
+    background-color: rgba(56, 31, 17, 0.733);
      
 }
 .btn-ghost:active{
-    border:1px solid rgba(56, 31, 17, 3);
-    font-weight: 500;
-    color:rgba(56, 31, 17, 0.733);
+    border:1px solid #e67d22a8;
+    font-weight: 350;
+    color: #ff7700;
+
 }
 .logo{
     height: 100px;
@@ -195,6 +210,9 @@ ion-icon{
 .section-features .long-copy{
     margin-bottom: 30px;
 }
+.section-photos{
+    padding: 0;
+}
 /*container da série de imagens(ul)*/
 .images-showcase{
     list-style: none;
@@ -207,11 +225,73 @@ ion-icon{
     width:25%;
 }
 /*container de cada imagem*/
-.photos{
+.photo{
     width: 100%;
     margin:0;
+    overflow: hidden; /*Impede que as imagens fiquem tão grandes ao ponto de surgirem
+    barras de scroll. POr consequência, s imagens ficam mais ajustadas em sus proporções.*/
+    background-color:#000/*para deixar as imagens mais escuras*/
 }
 .photo img{
     width: 100%;
     height: auto;
+    opacity: 0.7; /*deixa a imagem mais "fraca", permitindo combinar com o fundo escuro*/
+    transform: scale(1.15);
+    transition: 1s;
+}
+.photo img:hover{
+    /*usar valores próximos a 1 fará com que as imagens fique muito próximas do 
+    tamanho sem o scale, deixando espaços em branco.*/
+    transform:scale(1.02);
+    opacity: 1; /*faz as imagens voltarem para a cor original*/
+}
+
+.section-steps{
+    background-color: #f4f4f4;
+}
+/*coluna dos conteúdos de passos/opções*/
+.steps-box{
+    
+}
+.steps-box:first-child{
+    margin-top:30px;
+    text-align:right;
+    padding-right: 3%;
+}
+.steps-box:last-child{
+    margin-top: 70px;
+    text-align: right;
+    padding-left: 3%;
+}
+/*imagem do canto direito da seção*/
+.app-screen{
+    width:40%;
+}
+
+/*Container de passos*/
+.step{
+    margin-bottom:50px;
+}
+.step div{
+    color: #e67e22;
+    border: 2px solid #e67e22;
+    display: inline-block; /*Com este display, estamos dizendo que o "block" só ocupará o espaço que precisa par mostrar seu 
+    conteúdo, graças a participação do "inline".*/
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    /*somente com o conteúdo acima o contéudo do elemento(número) ficará para fora do círculo*/
+    text-align:center;
+    padding: 5px;
+    float: left;
+    font-size: 150%;
+    margin-right: 30px;
+}
+.btn-app img{
+    height: 50px;
+    width: auto;
+    margin-right:10px;
+}
+.step:lsat-of-type{
+    margin-bottom:80px;
 }
