@@ -195,3 +195,23 @@ ion-icon{
 .section-features .long-copy{
     margin-bottom: 30px;
 }
+/*container da série de imagens(ul)*/
+.images-showcase{
+    list-style: none;
+    width: 100%;
+}
+/*organizando a disposição dos containers <figure>*/
+.images-showcase li{
+    display: block;
+    float: left;
+    width:25%;
+}
+/*container de cada imagem*/
+.photos{
+    width: 100%;
+    margin:0;
+}
+.photo img{
+    width: 100%;
+    height: auto;
+}
