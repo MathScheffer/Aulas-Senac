@@ -1,5 +1,5 @@
 # Documentação
-## Menu de navegação principal:
+### Menu de navegação principal:
 1. Tele-entrega 
 2. Funcionamento 
 3. Cidades atendidas
@@ -99,7 +99,7 @@ Título: Estamos atendendo nas seguintes cidades
 
   
 ## Seção 5: Testemunho
-Título: Melhorando a qualidade de vida das pessoas
+**Título**: Melhorando a qualidade de vida das pessoas
 
 Saúde no prato é incrível! Eu sou uma pessoa super ocupada, com pouco tempo para cuidar da minha alimentação, mas tudo mudou com a equipe da saúde no prato que assumiu essa função.
 (Alberto Saltonetto)
