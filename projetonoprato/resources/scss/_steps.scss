@@ -1,0 +1,70 @@
+
+.section-steps{
+    background-color: #f4f4f4;
+    background-image: url(https://images.unsplash.com/photo-1423784346385-c1d4dac9893a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    h2::after{
+        display: none;
+    }
+    h2{
+        color:#fff;
+    }
+}
+ 
+
+/*coluna dos conteúdos de passos/opções*/
+.steps-box{
+    margin-left:20px;
+    text-align: left;
+    float: none;
+    color:#fff;
+    &:first-child{
+        margin-top:30px;
+        text-align:right;
+        padding-right: 3%;
+    }
+    &:last-child{
+    margin-top: 50px;
+    text-align: right;
+    padding-left: 3%;
+}
+}
+.app-screen{
+    width:40%;
+}
+
+/*Container de passos*/
+.step{
+    margin-bottom:50px;
+    div{
+        color: #e67e22;
+        border: 2px solid #e67e22;
+        display: inline-block; /*Com este display, estamos dizendo que o "block" só ocupará o espaço que precisa par mostrar seu 
+        conteúdo, graças a participação do "inline".*/
+        border-radius: 50%;
+        width: 55px;
+        height: 55px;
+        /*somente com o conteúdo acima o contéudo do elemento(número) ficará para fora do círculo*/
+        text-align:center;
+        padding: 5px;
+        float:left;
+        font-size: 150%;
+        margin-right: 30px;
+        @include d(s){
+            padding: 8px;
+            width: 45px;
+            height: 45px;
+            font-size:120%;
+        }
+    }
+    .step:last-of-type{
+        margin-bottom:80px;
+    }
+}
+
+.btn-app img{
+    height: 50px;
+    width: auto;
+    margin-right:10px;
+}

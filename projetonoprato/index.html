@@ -1,66 +1,114 @@
+
 <!DOCTYPE html>
 <html len="pt-br">
 <head>
     <meta  charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Saúde no Prato</title>
     <link rel="stylesheet" type="text/css" href ="vendors/css/normalize/normalize.css">
     <link rel="stylesheet" type="text/css" href ="vendors/css/responsivegridsystem/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400&amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href ="resources/css/style.css">
+    <script src="resources/js/actions.js"></script>
 </head>
-<body>
+<body> 
     <header>
-        <nav>
-            <div class="row">
+        <nav >
+            <div class="row nav-row">
                 <img src="resources/img/food.svg" alt="saúde no prato logo" class="logo">
-                <ul class="main-nav">
+                <ul class="main-nav" style="display: none;">
                     <li><a href="#">Tele-entrega</a></li>
                     <li><a href="#">Funcionamento</a></li>
                     <li><a href="#">Cidades atendidas</a></li>
                     <li><a href="#">Inscrever-se</a></li>
                 </ul>
+                <div class="mobile-nav-container">
+                    <ul class="mobile-nav" onclick="abrir()" id="mobile-nav">
+                        <li ></li>
+                        <li ></li>
+                        <li ></li> 
+                        <li ></li>
+                    </ul>
+                    <ul class="mobile-main-nav">
+                        <li >
+                            <a href="#nutri">
+                                <ion-icon name="nutrition"></ion-icon>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#cities">
+                                <ion-icon name="map"></ion-icon>
+                            </a>
+                        </li>
+                         <li>
+                            <a href="#app">
+                                <ion-icon name="apps"></ion-icon>
+                            </a>
+                        </li>
+                        <li><a href="#relatos">
+                                <ion-icon name="document"></ion-icon>
+                            </a>
+                        </li>
+                        <li><a href="#footer">
+                                <!--<img id="icon-4" src="resources/img/clock.svg">-->
+                                <ion-icon name="people"></ion-icon>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
-        <div class="hero-text-box">
+        <div class="hero-text-box row">
             <h1>Adeus fastfood do mal. <br> Olá comida saudável do bem.</h1>
             <a class="btn btn-full" href="#">Comprar agora</a>
             <a class="btn btn-ghost" id="#btn" href="#">Mais informações</a>
         </div>
     </header>
-    <section class="section-features">
+    <section id="nutri" class="section-features">
         <div class="row">
             <!-- &mdash; faz surgir um hífem diferenciado-->
-            <h2>Solução rápida e saudável &mdash; não apenas solução rápida.</h2>
+            <h2>Solução rápida <br> e <Br>saudável </Br></h2>
             <p class="long-copy">
-                Nós da saúde no prato queremos prover a você uma experiência incrivelmente deliciosa e saudável. 
-                Pois entendemos que nem todo mundo tem tempo suficiente ou interesse em cozinhar, mas não é por 
-                isso que as pessoas devem deixar de se alimentar bem.
+                    Nós da saúde no prato queremos prover a você uma experiência inteligente, saborosa e saudável, ajudando você a planejar e seguir a risca sua alimentação! 
             </p>
+            <p class="long-copy">
+                Contate-nos para mais informações.
+            </p>
+            
         </div>
         <div class="row">
-            <div class="col span-1-of-4 box">
-                <ion-icon name="infinite"></ion-icon>
-                <h3>Aberto 365 dias</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat malesuada massa non porttitor.
-                  Vivamus tristique laoreet lorem, at maximus ante ultrices vel.</p>
+            <div class=" feature-container col span-1-of-4 box  ">
+                <ion-icon name="restaurant"></ion-icon>
+                <h3>Refeições <br id="quebra">Personalizadas</h3>
+                <p>
+                    Oferecemos um serviço de assinatura onde você consulta nosso nutricionista especializado, fornecendo uma rotina alimentar!
+                </p>
+                <p>
+                    Ao contratar, nosso nutricionista valida sua rotina e é só retirar no dia e hora marcada ! :D
+                </p>
             </div>
-            <div class="col span-1-of-4 box">
+            <div class="col span-1-of-4 box  feature-container">
                 <ion-icon name="stopwatch"></ion-icon>
                 <h3>Pronto em 15 min.</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat malesuada massa non porttitor.
                   Vivamus tristique laoreet lorem, at maximus ante ultrices vel.</p>
             </div>
-            <div class="col span-1-of-4 box">
+            <div class="col span-1-of-4 box  feature-container">
                 <ion-icon name="nutrition"></ion-icon>
                 <h3>100% organico</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat malesuada massa non porttitor.
-                  Vivamus tristique laoreet lorem, at maximus ante ultrices vel.</p>
+                <p>
+                    Preocupamos constantemente com você <br>
+                    Alimentos retirados da nossa fazenda particular, livre de agrotóxicos!
+                </p>
             </div>
-            <div class="col span-1-of-4 box">
+            <div class="col span-1-of-4 box  feature-container">
                 <ion-icon name="card"></ion-icon>
                 <h3>Aceitamos cartões</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat malesuada massa non porttitor.
-                  Vivamus tristique laoreet lorem, at maximus ante ultrices vel.</p>
+                <p> Aceitamos todos os tipos de cartões!
+                    <br>
+                    Com isso, é possível fazer tanto seu plano, quanto suas refeições diárias com parcelas bem baixinhas ;)
+                </p>
             </div>
          </div>
     </section>
@@ -110,9 +158,57 @@
             </li>
         </ul>
     </section>
-    <section class="section-steps">
+    <section class="section-photos-mobile-mask">
+        <section class="section-photos section-photos-mobile">
+            <ion-icon name="ios-arrow-dropleft" onclick="moverEsquerda()"></ion-icon>
+            <ion-icon name="ios-arrow-dropright" onclick="moverDireita()"></ion-icon>
+            <ul class="images-showcase clearfix">
+                <li>
+                    <figure class="photo">
+                        <img src="resources/img/pizza.jpg" alt="pizza vegana" title="pizza vegana">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="photo">
+                        <img src="resources/img/ovos.jpg" alt="Ovos mexidos com cogumelos" title="ovos mexidos com cogumelos">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="photo">
+                        <img src="resources/img/panquecas.jpg" alt="panquecas com banana e mel" title="panquecas com banana e mel">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="photo">
+                        <img src="resources/img/vitamina.jpg" alt ="vitamina de frutas com aveia" title="vitamina de frutas com aveia">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="photo">
+                        <img src="resources/img/salmão.jpg" alt="Salmão grelhado com limão" title="Salmão grelhado com limão"> 
+                    </figure>
+                </li>
+                <li>
+                    <figure class="photo">
+                        <img src="resources/img/quinoa.jpg" alt="Quinoa com legumes, homus e pão pita" title="Quinoa com legumes, homus e pão pita">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="photo">
+                        <img src="resources/img/saladaA.jpg" alt="Salada Árabe" title="Salada Árabe">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="photo">
+                        <img src="resources/img/frango.jpg" alt="Frango com Legumes" title="Frango com legumes">
+                    </figure>
+                </li>
+            </ul>
+        </section>
+    </section>
+    <section id="app" class="section-steps">
         <div class="row">
-            <h2>Esperando o quê? &mdash; Bastam 3 passos</h2>
+            <h2>Esperando o quê? </h2>
         </div>
         <div class="row clearfix">
             <div class="col span-1-of-1 steps-box">
@@ -137,12 +233,12 @@
             </div>
         </div>
     </section>
-    <section class="section-cities">
+    <section id="cities" class="section-cities">
         <div class="row">
-            <h2>Estamos atendendo nas seguintes cidades</h2>
+            <h2>Cidades de Atendimento</h2>
         </div>
-        <div class="row clearfix">
-            <div class="col span_1_of_4 box">
+        <div class="row clearfix cities">
+            <div class="col span_1_of_4 box city-container">
                 <figure class="img-city-container">
                     <img src="resources/img/poa.jpg" alt="Porto Alegre" class="img-city">
                 </figure>
@@ -160,7 +256,7 @@
                     <a href=#>@saudenoprato_poa</a>
                 </div>
             </div>
-            <div class="col span_1_of_4 box">
+            <div class="col span_1_of_4 box city-container">
                 <figure class="img-city-container">
                     <img src="resources/img/pf.jpg" alt="Passo Fundo" class="img-city">
                 </figure>
@@ -178,7 +274,7 @@
                     <a href=#>@saudenoprato_pf</a>
                 </div>
             </div>
-            <div class="col span_1_of_4 box">
+            <div class="col span_1_of_4 box city-container">
                 <figure class="img-city-container">
                     <img src="resources/img/alg.jpg" alt="Alegrete" class="img-city">
                 </figure>
@@ -196,7 +292,7 @@
                     <a href=#>@saudenoprato_alg</a>
                 </div>
             </div>
-            <div class="col span_1_of_4 box">
+            <div class="col span_1_of_4 box city-container">
                 <figure class="img-city-container">
                     <img src="resources/img/sl.jpg" alt="São Leopoldo" class="img-city">
                 </figure>
@@ -216,42 +312,41 @@
             </div>
         </div>
     </section>
-    <section class="section-testimonials">
+    <section id="relatos" class="section-testimonials">
         <div class="row">
             <h2>Melhorando a vida das pessoas!</h2>
         </div>
-        <div class="row">
-            <div class="col span_1_of_3 bor">
+        <div class="row cite-container">
+            <div class="col span_1_of_3 box">
                 <blockquote>
-                    Saúde no prato é incrível! Eu sou uma pessoa super ocupada, com pouco tempo para cuidar da 
-                    minha alimentação, mas tudo mudou com a equipe da saúde no prato que assumiu essa função.
-                    <cite><img src="resources/img/customer-1"> Alberto Solnetoo</cite>
+                    Parabéns pelo Dono do Local! Além de super simpático, é um gênio! Primeiro lugar onde consigo
+                    consultar com um nutricionista e me alimentar seguindo suas recomendações!
+                    <cite><img src="resources/img/customer-1.jpg"> Alberto Solnetoo</cite>
                 </blockquote>
             </div>
-            <div class="col span_1_of_3 bor">
+            <div class="col span_1_of_3 box">
                 <blockquote>
-                    Comida saúdavel rapidinho na porta da sua casa! A melhor opção para mim e para vc... 
-                  principalmente para mim que odeio cozinhar e que já perdi três casas após incendia-las 
-                  tentando cozinhar.
+                    Exelecente atendimento! Profissionais extremamente educados e capacitados!
+                    Como trabalho em casa, preciso do serviço de tele-entrega. A comida chega direitinho e quentinha!
                     <cite>
-                        <img src="resources/img/customer-2" >Joicelaine Carneiro
+                        <img src="resources/img/customer-2.jpg" >Joicelaine Carneiro
                     </cite>
                 </blockquote>
             </div>
-            <div class="col span_1_of_3 bor">
+            <div class="col span_1_of_3 box">
                 <blockquote>
-                    Eu estava procurando por uma alimentação saudável e que coubesse no meu bolso e encontrei... 
-                  Saúde no Prato, melhor custo-benefício ever! Muito mais que alvace, eles tem rúcula e 
-                  repolho também!
+                        Estava precisando de disciplina na minha dieta. Já tinha feito consultas com nutricionistas,
+                    mas sempre fugia.
+                    Com o sistema de encomenda de prato feito sob demanda, consegui finalmente organizar minha rotina alimentar!
                     <cite>
-                        <img src="resources/img/customer-3">    Pedro Anttunes
+                        <img src="resources/img/customer-3.jpg">    Pedro Anttunes
                     </cite>
                 </blockquote>
             </div>
         </div>
     </section>
-    <footer>
-        <div class="row">
+    <footer id="footer">
+        <div class="row footer-infos">
             <div class="col span_1_of_2 box">
                 <ul class="footer-nav">
                     <li><a href="#">Sobre Nós</a></li>
@@ -266,7 +361,7 @@
                     <li><a href="#"><ion-icon class="logo-instagram" name="logo-instagram"></ion-icon></a></li>
                     <li><a href="#"><ion-icon class="logo-facebook" name="logo-facebook"></ion-icon></a></li>
                     <li><a href="#"><ion-icon class="logo-googleplus" name="logo-googleplus"></ion-icon></a></li>
-                    <li><a href="#"><ion-icon class="logo-twitter" name="logo-twitter"></ion-icon></a></li>
+                    <li><a href="#"><ion-icon class="logo-whatsapp" name="logo-whatsapp"></ion-icon></a></li>
                 </ul>
             </div>
         </div>
@@ -274,7 +369,7 @@
             <p>Copyright &copy; 2019 - Saúde no Prato. Todos os direitos reservados.</p>
         </div>
     </footer>
+    <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
 </body>
 
 </html>
-<script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>

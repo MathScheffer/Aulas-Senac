@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Sistema de pedidos</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	</head>
+	<body>
+		<main>
+		  <div>
+
+			<form  id="login" method="post" action="model/model.php" >
+			    <h3>Bem vindo ao sistema de pedidos!</h3>
+			    <h2>Faça o seu login</h2>
+                
+			    <label>Usuário:</label>
+                <input name="nomeusuario" style="background-color: #4391EB;" type="text" required />
+                <br>
+                <div id="erroUsuario" class="erroContent">Usuário não encontrado!</div>
+                
+			    <label>Senha:</label>
+                <input name="senha" style="background-color: #4391EB;" type="password" required />
+                <div id="erroSenha" class="erroContent">Senha Incorreta!</div>
+                
+			    <input type="submit" value="Entrar"/>
+                
+			    <p>Não tem cadastro? Clique <a href="cadastrar.html">aqui</a> para se cadastrar!</p>
+			</form>
+
+			<p>Desenvolvido por: Neimar Sausen, Matheus Leuck, Matheus Scheffer, Geraldo Fulgêncio</p>
+
+		  </div>
+
+		</main>
+	   <script src="assets/jquery.js"></script>
+       <script src="control/control.js"></script> 
+	</body>
+
+</html>

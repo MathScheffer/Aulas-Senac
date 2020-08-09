@@ -1,0 +1,52 @@
+.section-testimonials{
+    background-image:$fundo-testimonials;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: $branco;
+    background-attachment: fixed;
+    margin-bottom:5px;
+
+
+}
+
+blockquote{
+    padding: 2%;
+    font-style: italic;
+    line-height: 145%;
+    &::before {
+        content: "\201C";
+        font-size: 400%;
+        display: block;
+    
+    }
+}
+.cite-container{
+    @include d(s){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        div{
+            width: 80%;
+            blockquote{
+                text-align: justify;
+            }
+            &:nth-child(1){
+                margin-left: 0;
+            }
+        }
+    }
+}
+cite{
+    font-size:90%;
+    margin-top:25px;
+    display: block;
+    img{
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+}
+

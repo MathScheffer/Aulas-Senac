@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Cadastro de usuário</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	</head>
+	<body>
+		<main>
+		  <div>
+
+			<form  method="POST" id="cadastrar" action="model/class.create.php">
+				<fieldset name="dadospessoais">
+					<h2>Dados pessoais</h2>
+					<label>Nome completo:</label>
+                    <input  name="nome" style="background-color: #4391EB;" type="text" required />
+					<label>Telefone:</label>
+                    <input name="telefone" style="background-color: #4391EB;" type="tel"required/>
+					<label>Email:</label>
+                    <input name="email" style="background-color: #4391EB;" type="email"required/>
+				</fieldset>	
+
+				<fieldset name="dadosdeusuario">
+					<h2>Dados de usuário</h2>
+					<label>Usuário:</label>
+                    <input name="usuario"  style="background-color: #4391EB;" type="text"required/>
+					<label>Senha:</label>
+                    <input name="senha" style="background-color: #4391EB;" type="password"required/>
+					<label>Confirmar senha:</label>
+                    <input name="senhaconf"style="background-color: #4391EB;" type="password"required/>
+					<input type="submit" value="Cadastrar!"/>
+				</fieldset>	
+
+			</form>
+
+		  </div>
+
+		</main>
+	   <script src="assets/jquery.js"></script>
+       <script src="control/control.js"></script> 
+	</body>
+
+</html>

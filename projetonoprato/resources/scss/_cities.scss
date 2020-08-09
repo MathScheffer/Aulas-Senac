@@ -1,0 +1,101 @@
+.section-cities .box{
+        padding: 0;
+        overflow: hidden;
+    
+}
+.city-container{
+    @include d(m){
+        width: 40%;
+    }
+    @include d(s){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    @include d(m){
+        &:nth-child(2), &:nth-child(4) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            .city-feature{
+                flex-flow: row-reverse;
+            }
+        }
+    }
+    @include d(us){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1em;
+    }
+}
+.city-feature{
+   display: flex;
+   @include d(m){
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    
+    }
+    @include d(s){
+        width: 65%;
+    }
+    @include d(us){
+        width: 85%;
+    }
+    justify-content: space-between;
+    p,a{
+        height: 70px;
+        margin: 0;
+        line-height: 70px;
+        @include d(s){
+            //line-height: 1;
+        }
+        @include d(m){
+            text-align:center;
+            font-size: 0.86em;
+        }
+    }
+    a{
+        color:#e67e22;
+    }
+    ion-icon{
+        width: 45px;
+    }
+}
+.cities{
+    @include d(m){
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;  
+        margin-left: 40px;
+    }
+    @include d(s){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    @include d(us){
+        width: 100%;
+    }
+}
+.img-city-container{
+    width: 261px;
+    height: 142px;
+    overflow: hidden;
+    margin-bottom: em(20);
+    @include d(m){
+        margin: 0 auto;
+        margin-bottom: 1.25em;
+    }
+    @include d(us){
+        width: 85%;
+        height: 200px;
+    }
+}
+.img-city{
+   width: 100%;
+   height: auto;
+}
+

@@ -1,0 +1,29 @@
+<div class="teste">
+    <p>Malakoi</p>
+</div>
+<style>
+    .teste{
+        display: "block";
+        color: rgb(250, 195, 195);
+        padding:"100px";
+    }
+</style>
+<script>
+var elemento = document.querySelector(".teste");
+
+function css(el, estilo){
+    /*
+    document.defaultView : 
+retorna todos os atributos do documento INTEIRO;
+    document.defaultView.getComputedStyle(element,pseudoelement) : 
+delimita para retornar somente os view de css de um ELEMENT específico
+    document.defaultView.getComputedStyle(elemente,pseudo)[style]: 
+filtra os views de css de um element em específico e retorna somente o valor do 
+style desejado
+    */
+   console.log(document.defaultView.getComputedStyle(el, null)[estilo]);
+}
+
+//css(elemento, "display");
+css(elemento, "padding");
+</script>

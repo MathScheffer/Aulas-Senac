@@ -1,0 +1,311 @@
+header{
+    -webkit-background-composite:black;
+    background-image: $fundo-hero;
+    /*background-repeat: no-repeat;*/
+    background-size:cover;
+    background-position: center;
+    height: 100vh;
+    background-attachment: fixed;
+    @include d(m){
+        max-height: 650px;
+    }
+}
+
+.hero-text-box{
+
+    //position: absolute;
+    //width: 1000px; somente a da row
+    top:20%;
+    //left:50%; deixar a margin da row decidir o espaçamento
+    //transform: translate(-62%,-50%);
+    @include d(s){
+        top:0;
+        display: flex;
+        flex-direction: column;
+        h1{
+            font-size: 1.8em;
+        }
+        a{
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+    }
+    @include d(us){
+        top:0;
+        display: flex;
+        flex-direction: column;
+        h1{
+            font-size: 1.8em;
+        }
+        a{
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+    }
+}
+.nav-row{
+    @include d(s){
+        display: flex;
+        justify-content: space-between;
+    }
+}
+/*Logo*/
+.logo{
+    height: 100px;
+    width: auto;
+    float: left;
+    margin-top:20px;
+    &.logoDim{
+        width:60px;
+        height:60px;
+        position:absolute;
+    }
+//    display: none;
+    @include d(s){
+        float:none;
+        align-self: end;
+        //height: 60px;
+        
+
+    }
+}
+/*Menu*/
+.main-nav{
+    float: right;
+    list-style:none;
+    margin-top:55px;
+    li{
+        display: inline-block;
+        margin-left:40px;
+        a{
+            padding:8px 0 ; /*cima-baixo;esquerda-direita*/
+            color:$branco;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-bottom:2px solid transparent;
+            transition: border-bottom 0.2s;
+            &:visited, &link{
+                padding:8px 0;
+                color:#fff;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-size: 90%;
+                border-bottom: 2px solid transparent;
+                transition: border-bottom 0.2;            
+            }
+            ion-icon:hover,&:active{
+                border-bottom: 2px solid $laranja;
+            }
+        }
+    }
+
+}
+.mobile-nav-container{
+    display: flex;
+    flex-direction: column;
+    //justify-content: flex-end;
+    height: 150px;
+    //width: 50%;
+    align-items: center;
+    margin-left: 0;
+    transition: all 0.8s;
+    &.openContainer{
+        width:70%;
+        margin:0 auto;
+    }
+    @include d(s){
+        display: flex;
+    }
+    
+}
+.mobile-nav{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-self: flex-end;
+    align-items: center;
+    //width: 100%;
+    height:75px;
+    width: 75px;
+    border:2px solid $laranja;
+    border-radius: 20%;
+    padding: 0px 4px;
+    margin-top:20px;
+
+    &.open{
+        margin:0 auto;
+        margin-top:20px;
+        width:60px;
+        //display: none;
+    }
+   // margin: 0 auto;
+
+    li{
+        height:10%;
+        width: 100%;
+        background-color:$branco;
+        border-radius: 10%;
+        cursor: pointer;
+        &:nth-child(1){
+            height: 15%;
+            border-top-right-radius: 50%;
+            border-top-left-radius: 50%;
+        }
+        &:nth-child(4){
+            height: 15%;
+            border-bottom-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+        }
+    }
+}
+.mobile-main-nav{ 
+    @extend .main-nav;
+    display: flex;
+    
+    justify-content: center;
+    height:100px;
+    //width:100%;
+    margin-top:25px;
+    left: 0%;
+    right: -1.5%;
+    display: none;
+    &.openMain{
+        display:flex;
+        width: 100%;
+        justify-content:space-between;
+        margin-top: 0px;
+        position: absolute;
+        top: 100px;
+        @include d(l){
+            top: 140px;
+        }
+    }
+
+
+    li{
+        float:none;
+        display: block;
+        margin-top:0 auto;
+        margin-left: 0;
+        opacity: 0;
+        &.fade{
+            opacity: 1;
+        }
+        &:nth-child(1){
+            transition: all 0.5s ease 0.2;
+        }
+        &:nth-child(2){
+            transition: all 0.5s ease 0.4;
+        }
+        &:nth-child(3){
+            transition: all 0.5s ease 0.6;
+        }
+        &:nth-child(4){
+            transition: all 0.5s ease 0.8;
+        }
+        a{
+            font-size:10px;
+            img{
+                width:50px;
+                height: 50px;
+            }
+        }
+    }
+
+
+}
+/*Botões*/
+
+.btn{
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 400;
+    text-decoration:none;
+    border-radius: 200px;
+    color:$branco;
+    transition: all 1.5s;
+}
+.btn-full{
+    background-color: #e67e22;
+    padding: 5px;
+    width: 220px;
+    text-align: center;
+    color:#fff;
+    border:1px solid #e67e22;
+    margin-right: 15px;
+    transition: width 0.5s, color 0.3s;
+}
+.btn-ghost {
+    border: 1px solid #e67e22;
+    width: 220px;
+    text-align: center;
+    color: #e67e22;
+    transition: width 0.5s, color 0.3s;
+}
+.btn:link,
+.btn:visited{
+    display: inline-block; /*para poder manusear links <a>*/
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius:200px;
+    color:$branco;
+}
+.btn-full:link,
+.btn-full:visited{
+    background-color: $laranja;
+    border: 1px solid $laranja;
+    color: $branco;
+}
+.btn-ghost:link,
+.btn-ghost:visited{
+    border: 1px solid #ddd;
+    color:$branco;
+}
+/*.btn:hover,
+.btn:active{
+   background-color:#e67e22;
+   
+
+}*/
+.btn-full:hover{
+    @include d(l){
+        width: 240px;
+    }
+        padding-left:17.5px;
+        padding-right: 17.5px; 
+    @include d(s){
+        padding-left:none;
+        padding-right:none;
+    }
+}
+.btn-full:active{
+    border:1px solid $marrom;
+    color:$marrom;
+    font-weight: 350;
+}
+.btn-ghost:hover{
+    @include d(l){
+        width: 240px;
+    }
+    padding-left:17.5px;
+    padding-right: 17.5px;  
+    background-color:$marrom;
+    @include d(s){
+        padding-left:none;
+        padding-right: none;  
+    }
+}
+.btn-ghost:active{
+    border:$lar-btn-border;
+    font-weight: 350;
+    color: $lar-btn;
+
+}
+/*
+#icon-1,#icon-2,#icon-3,#icon-4{
+}
+#openI1:active #mobile-main-nav{
+
+}*/

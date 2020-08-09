@@ -1,0 +1,280 @@
+/*
+                                            *******************************
+                                            *              Home           *
+                                            *******************************
+*/
+#home{
+    position: relative;
+	background-color:$bege1;
+    padding:$gutter; 
+	//width: 100vw;
+	height: 100vh;
+	@include d(m){
+        width: 100%;
+	}
+    #home-container{
+        @include d(s){
+        width: 100%;
+        }
+    }
+}
+
+/*Responsável por fazer aparecer o menu de navegação*/
+.quad.menu{
+    //clip-path: circle(0);
+    clip-path: circle(100% at 50% 50%);
+}
+/*Menu de navegação*/
+.menu{
+    color:#ffe066;
+    clip-path: circle(0% at 50% 50%);
+    position: fixed;
+    top:50%;
+    left:50%;
+    width: 55%;
+    height: 85%;
+    background-color: #f2ee54;
+    z-index: 2;
+    transform: translate(-50%,-50%);
+    display: flex;
+    min-width: 320px;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.5s ease;
+    min-width: 340px;
+    @include d(s){
+        width: 85%;
+    }
+
+}
+/*
+                                            *******************************
+                                            * Partes do Menu de navegação *
+                                            *******************************
+*/
+/*"Pães"*/
+#h-top,#h-bot{
+    width: 60%;
+    height: 90px;
+    background: #d18745;
+    text-align: center;
+    line-height: 90px;
+    margin: 0 auto;
+    min-width: 320px;
+    font-size: em(33);
+    @include d(s){
+        font-size: em(24);
+    }
+}
+#h-top{
+    border-top-left-radius: 63%;
+    border-bottom-left-radius: 10%;
+    border-top-right-radius: 63%;
+    border-bottom-right-radius: 10%;
+}
+#h-bot{
+    border-radius: 0px 0px 50px 50px;
+}
+/* Formatação das partes de cadastro,login e promoção*/
+#login-cad,#promo{
+    display: flex;
+    justify-content: space-around;
+    height: 6.5%;
+    width: 55%;
+    min-width: 300px;
+    margin: 0 auto;
+   // padding: 10px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        //height: 100%;
+        //background: yellow;
+        text-align: center;
+    
+    }
+}
+/*Fundo da área de cadastro e login*/
+#login-cad{
+    background: #fff;
+    a{
+        color: black;
+    }
+}
+.display-toggle{
+    display: block;
+}
+/*Divisor das duas áreas acima*/
+#divisor{
+    width: 10%;
+    background: yellow;
+    border-radius: 20px;
+}
+/*Área de promoção*/
+#promo{
+    background: #3c0b00;
+    align-items: center;
+    min-width: 300px;
+    font-size: em(20);
+    
+}
+/* */
+#tomatos{
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 55%;
+    min-width: 300px;
+    height: 5.5%;
+    justify-content: space-around;
+    //align-items: center;
+    div{
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: tomato;
+        width: 30%;
+        height: 100%;
+        border-radius: 10px;
+
+    }
+    
+}
+#lettuce{
+    height: 7%;
+    width: 65%;
+    min-width: 340px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    background: green;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: em(20);
+    
+}
+#promo a,#tomatos a, #lettuce a{
+    color: #ffe066;
+}
+#hamburguer{
+    position: fixed;
+    width: 70px;
+    height: 60px;
+    /*width: grid(1.5);
+    height: grid(3.5);*/
+    //background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 3;
+}
+.barra{
+    background: tomato;
+    height: 10px;
+    border-radius: 5px;
+    transition: 0.3s ease;
+    
+}
+.change.b1{
+    transform: translateY(15px) rotateZ(-45px);
+}
+.change.b2{
+    opacity: 0;
+}
+.change.b3{
+    transform: translateY(-15px) rotate(45px);
+}
+#home-container{
+    @include container;
+    width: 80%;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+     header{
+        h1{
+            @include tipo-1(118);
+            font-size:em(118);
+            float: none;
+            @include d(s){
+                font-size: 3.375em;
+                font-weight: bolder;
+            }    
+        }
+        p{
+          font-size:em(48);  
+        }
+        p{
+            font-size:em(48);
+            line-height: 58px;
+        }
+        h1,p{
+            text-align: center;
+
+            margin-bottom: 20px;
+        }
+         h1{
+
+         }
+         p{
+             @include d(s){
+                 font-size: 2em;
+             }
+         }
+    }
+    ul,h2{
+        text-align: center;
+        @include tipo-1(24);
+    }
+}
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

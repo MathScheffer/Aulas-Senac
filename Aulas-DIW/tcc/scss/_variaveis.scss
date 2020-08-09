@@ -1,0 +1,40 @@
+//Cores
+$bege1:#f2edb5;
+//fontes
+$font-2: 'Aref Ruqaa', serif;
+$fonte-primaria:'kurale',serif;
+$font-3: 'PT mono', monospace;
+
+@function em($pixel,$contexto:16){
+	@return $pixel/$contexto + em;
+}
+@mixin tipo-1($size){
+	font-family: $fonte-primaria;
+	@if $size == 18{
+		font-size: em(18);
+		line-height: em(30,18);
+	}@else if $size == 24{
+		font-size: em(24);
+		line-height: em(30,24);
+    }
+}
+@mixin tipo-2($size){
+	font-family: $font-2;
+	@if $size == 18{
+		font-size: em(18);
+		line-height: em(30,18);
+	}@else if $size == 24{
+		font-size: em(24);
+		line-height: em(30,24);
+	}
+}
+@mixin tipo-3($size){
+	font-family: $font-3;
+	@if $size == 18{
+		font-size: em(18);
+		line-height: em(30,18);
+	}@else if $size == 24{
+		font-size: em(24);
+		line-height: em(30,24);
+	}
+}

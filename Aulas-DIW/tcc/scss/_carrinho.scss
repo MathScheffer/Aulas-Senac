@@ -1,0 +1,215 @@
+/*
+                                            *******************************
+                                            *           Comanda           *
+                                            *******************************
+*/
+#comanda{
+    min-height: 100vh;
+    h2{
+        font-size: em(48);
+        text-align: center;
+        margin: $gutter;
+        padding: $gutter;
+        @include d(s){
+            margin-top: 95px;
+        }
+    }
+}
+#pedidos{
+    min-height: 70vh;
+    background: rgba(0,0,0,.2); 
+    @include d(l){
+        max-height: 70vh;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+       // align-items: center;
+    }
+}
+.pedido-container{
+    background: white;
+    border: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    @include d(s){
+        height: 230px;
+        margin: 10px 0;
+    }
+}
+.pedido{
+    height: 67px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    
+    @include d(s){
+        height: 90px;
+        flex-direction: column;
+        height: 100%;
+    }
+    p{
+        font-size: 24px;
+        flex: 1;
+        @include d(l){
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        }
+    }
+    button{
+        @include d(s){
+        width: 30%;
+        height: 15%;
+        }
+        font-size: 30px; 
+        width: 65px;
+        height: 35px;
+        background: #dc3545;
+        color: rgba(0,0,0,.5);
+        border-radius: 10px;
+        border: 2px solid tomato;
+        &:focus{
+            outline: none;
+        }
+    }
+    p{
+        text-align: center;
+        &::after{
+            display: block;
+            height: 2px;
+            background-color:$bege1;
+            content:" ";
+            width:100px;
+            margin:0 auto;
+            margin-top:15px;
+            @include d(s){
+                margin-top: 4px;
+            }
+        }
+        @include d(s){
+            flex: 0;
+        }
+    }
+    
+}
+.img-pedido{
+    min-width: 150px;
+    height: 100%;
+    background: black;
+    @include d(s){
+        max-height: 55%;
+    }
+}
+.b-s{
+    background-image: url('../img/b-s.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.b-casa{
+    background-image: url('../img/b-s.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.h-c{
+    background-image: url(../img/h-c.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.x-a{
+    background-image: url('../img/x-acebolado.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.x-b{
+    background-image: url('../img/x-bacon.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.x-c{
+    background-image: url('../img/x-carne.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.h-s{
+    background-image: url('../img/h-s.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.pedido-info-container{
+    flex:1;
+    display: flex;
+ 
+    @include d(s){
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-around;
+    }
+}
+
+
+#decisoes{
+    background: green;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: 10vh;
+    @include d(s){
+        flex-direction: column;
+        padding: 10px 0;
+        height:auto;
+    }
+    @include d(hs){
+        flex-direction: column;
+        padding: 10px 0;
+        height:auto;   
+    }
+    div{
+        //flex: 1;
+        width:280px;
+        display: flex;
+        justify-content: space-evenly;
+        height: 100%;
+        background: white;
+        align-items: center;
+        border: 1px solid black;
+        //margin-top: 8px;
+        @include d(hs){
+            &:nth-child(1){margin-bottom: 10px;}
+        }
+        @include d(s){
+            &:nth-child(1){margin-bottom: 10px;}
+        }
+        a{
+            font-size: em(24);
+            text-decoration: none;
+            color: black;
+        }
+        svg{
+            font-size: 30px;
+        }
+    }
+}
+
+#devolta-produtos{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background: white;
+    svg{
+        font-size: 30px;
+    }
+}
+#enviar{
+    text-align:right;
+}

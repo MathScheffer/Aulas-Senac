@@ -1,0 +1,208 @@
+
+$cols:12;
+$gutter:20px;
+$l-device:1240px;
+$m-device:760px;
+$s-device:460px;
+$cols: 12;
+@mixin d($size) {
+    @if $size == l{
+        @media screen and(min-width: #{$l-device}){
+            @content;
+        }
+    }
+    @else if $size == m{
+        @media screen and(min-width: #{$m-device}) and (max-width: #{$l-device - 1} ){
+            @content;
+        }
+    }
+    @else if $size == us{
+        @media screen and (max-width: 459px){
+            @content;
+        }
+    }
+    @else if $size == s{
+        @media screen and(min-width: #{$s-device}) and (max-width: #{$m-device - 1}) {
+            @content
+        }
+    }
+}
+
+@function grid($col,$cols,$offset){
+  $width: $col / $cols * 100 + '%';
+  $result: calc(#{$width} - #{$gutter+px});
+  @if $offset == offset{
+        $gutter: $gutter / 2;
+        $result: calc(#{$width} + #{$gutter});
+    }
+  @return $result;
+}
+@for $i from 2 through $cols{
+  $j: $i;
+    @while $i >=1 {
+      .span_#{$i}_of_#{$j}{
+        width: grid($i,$j,false);
+      };
+      $i: $i - 1;
+    }
+}
+
+@mixin grid-structure{
+    float:left;
+    min-height: 1px;
+    margin-left: $gutter / 2;
+    margin-right: $gutter / 2;
+    @include d(s){
+        width: 100%;
+        float:none;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+[class^="span_"]{
+  @include grid-structure;
+}
+@mixin clearfix{
+    &::after, &::before{
+        content:'';
+        display:table;
+    }
+    &::after{
+        clear: both;
+    }
+}
+// Gera os offset
+
+@include d(s){
+    %offset{
+        margin-left:0px;
+    }
+}
+// Gera os offset
+@for $i from 2 through $cols{
+  $j: $i;
+  @while $i >= 1 {
+    .offset_#{$i}of_#{$j}{
+        margin-left: grid($i,$j,offset);
+        @extend %offset;
+	  }
+	  $i: $i - 1;
+    }
+}
+@include d(s){
+    %offset{
+        margin-left:0px;
+    }
+}
+.row{
+    position:relative;
+    @include d(l){
+        margin:0 auto;
+    }
+    @include d(m){
+        position:relative;
+        margin-left: $gutter ;
+        margin-right: $gutter ;
+    }
+    @include d(s) {
+        margin: 10px;
+    }
+    @include clearfix;
+}
+.clearfix{
+    @include clearfix;
+}
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+body {
+    line-height: 1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+	display: block;
+}
+
+nav ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color: #ff9;
+    color: #000;
+    text-decoration: none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color: #ff9;
+    color: #000; 
+    font-style: italic;
+    font-weight: bold;
+}
+
+del {
+    text-decoration:  line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display: block;
+    height: 1px;
+    border: 0;   
+    border-top: 1px solid #cccccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+input, select {
+    vertical-align: middle;
+}

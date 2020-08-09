@@ -1,0 +1,63 @@
+/*
+                                            *******************************
+                                            *           Footer            *
+                                            *******************************
+*/
+#info-geral{
+    min-height: 45vh;
+    margin-top: $gutter;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    @media screen and(min-width: 903px){
+        flex-direction: row;
+        h2{
+            font-size:  em(36);
+            font-weight: bold;
+        }
+    }
+    h2{
+        font-size:  em(24);
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    article{
+        text-align: center;
+        li,p{
+            margin: 5px 0;
+            font-size: 18px;
+        }
+        @media screen and(min-width: 903px){
+            h2{
+                font-size: 36px;
+            }
+            li,p{
+                font-size: 24px;
+            }
+        }
+        @include d(s){
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+#redes{
+    font-size: em(24);
+    text-align: center;
+    width:100%;
+    h2{
+        margin-bottom: 20px ;
+    }
+    a{
+        font-size: em(24);
+    }
+    @include d(s){
+        flex-direction: row;
+        flex-wrap: wrap;
+        a{   
+            margin: 0 auto;
+        }
+    }
+}

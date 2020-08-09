@@ -1,0 +1,93 @@
+
+.section-photos{
+    padding: 0;
+    @include d(s){
+        display: none;
+    }
+    @include d(us){
+        display: none;
+    }
+}
+.section-photos-mobile-mask{
+    padding: 0;
+    @include d(l){
+        display: none;
+    }
+    @include d(m){
+        display: none;
+    }
+    overflow: hidden;
+}
+
+.section-photos-mobile {
+
+        display: block;
+        width: 800vw;
+        .images-showcase{
+            margin-left: 0;
+            display: flex;
+            li{
+                padding-left:.5vw;
+                padding-right: .5vw;
+            }
+            transition: all 1.2s ;
+        }
+        /*
+O "Position: Relative" vai servir como novo contexto para todos objetos filhos
+com "position: absolute", impedindo-os de terem como referencia o contexto do
+browser.
+        */
+
+        position: relative;
+        ion-icon:nth-of-type(1){
+            position: absolute;
+            top:50%;
+            /*
+Como o "position:absolute" usa as extremidades do bloco como referencia, devemos
+usar o "transform" para arrastar de forma "negativa" o elemento, sendo -50% o
+responsável por posicionar o CENTRO do conteúdo na posição do "top: 50%";
+            */
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        ion-icon:nth-of-type(2){
+            position: absolute;
+            right: 703vw;
+            top:50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+}
+/*container da série de imagens(ul)*/
+.images-showcase{
+    list-style: none;
+    width: 100%;
+    /*organizando a disposição dos containers <figure>*/
+    li{
+        display: block;
+        float: left;
+        width:25%;
+    }
+}
+/*container de cada imagem*/
+.photo{
+    width: 100%;
+    margin:0;
+    overflow: hidden; /*Impede que as imagens fiquem tão grandes ao ponto de surgirem
+    barras de scroll. POr consequência, s imagens ficam mais ajustadas em sus proporções.*/
+    background-color:#000;/*para deixar as imagens mais escuras*/
+    img{
+        width: 100%;
+        height: auto;
+        opacity: 0.7; /*deixa a imagem mais "fraca", permitindo combinar com o fundo escuro*/
+        transform: scale(1.15);
+        transition: 1s;
+        &:hover{
+            /*usar valores próximos a 1 fará com que as imagens fique muito próximas do 
+    tamanho sem o scale, deixando espaços em branco.*/
+    transform:scale(1.02);
+    opacity: 1; /*faz as imagens voltarem para a cor original*/
+        }
+    }
+}
+

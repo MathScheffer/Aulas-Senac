@@ -1,0 +1,57 @@
+
+#form-cad{
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    font-size: em(36);
+    text-align: center;
+    margin: 40px 0;
+}
+
+#dados-pessoais{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    /* align-content: center; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin: 0 auto;
+
+    h2{
+        font-size: em(36); 
+        text-align: center;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        @include d(s){
+            font-size: em(30);
+        }
+        
+    }
+    label{
+        @include tipo-1(24);
+    }
+    input{
+        border: 4px solid $bege1;
+        //height: 28px;
+        @include tipo-1(18);
+        &:focus{
+                outline: none;
+                transform: scale(1.1);
+        }
+    }
+}
+
+#botao{
+    @include tipo-1(24);
+    background: white;
+    border: 2px solid $bege1;
+    width: 160px;
+
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    
+    box-shadow: 5px 5px 0px -2px #E5D7BE, 5px 5px 0 0 $bege1;
+}
