@@ -1,0 +1,69 @@
+--Busca geral
+SELECT * FROM movimento;
+SELECT * FROM pedido;
+--Refinando buscas
+	--refinando por uma coluna
+select nro_ped from movimento;
+		--refinando por uma coluna
+select nro_ped from movimento group by nro_ped ;
+select total_mov from movimento;
+
+Select nome, nro_ped, total 
+	from cliente c, pedido p,
+	(select nro_ped as numero_ped, sum(total_mov) as total 
+ 	from movimento group by nro_ped) Resultado
+	where c.cod_cli = p.cod_cli
+		and p.nro_ped = Resultado.numero_ped;
+
+(select nro_ped as numero, sum(total_mov) as total 
+ 	from movimento group by nro_ped)
+	
+(select nro_ped as numero, sum(total_mov) as total 
+	from movimento group by nro_ped
+	having sum(total_mov)> 50) -- condição de amostragem
+	
+(select nro_ped as numero, sum(total_mov) as total 
+	from movimento 
+ 	where cod_prod = 1        -- 
+ 	group by nro_ped
+	having sum(total_mov)> 50)
+
+CREATE VIEW pedidoSubstituto AS
+	select * from pedido;
+SELECT * FROM pedidoSubstituto;
+
+CREATE VIEW tbl_total AS
+select nro_ped as numero_ped, sum(total_mov) as total 
+ 	from movimento group by nro_ped;
+	
+select * from tbl_total;
+/*
+BEGIN 
+UPDATE  pedidoSubstituto 
+	set total_ped = b.total
+	FROM pedidoSubstituto a, tbl_total b
+	WHERE pedidoSubstituto.nro_ped = b.numero_ped;
+END;
+*/
+/* CONTROLE TRANSACIONAL
+* BEGIN TRANSACTION - joga na "memória"
+* ROLLBACK TRANSACTION  - desfazer a TRANSACION
+* COMMIT - Confirma a Transacional
+*/
+
+BEGIN TRANSACTION;
+	UPDATE  pedido 
+	set total_ped = b.total
+	FROM pedido a, tbl_total b
+	WHERE pedido.nro_ped = b.numero_ped;
+rollback transaction;
+
+
+BEGIN TRANSACTION;
+	UPDATE  pedido 
+	set total_ped = null;
+rollback transaction;
+
+select * from pedido;
+
+
