@@ -1,0 +1,39 @@
+CREATE OR REPLACE FUNCTION limparMovimento() RETURNS void AS
+	'DELETE FROM movimento;'
+	LANGUAGE SQL;
+	
+BEGIN TRANSACTION;
+SELECT * FROM movimento;
+SELECT limparMovimento();
+SELECT * FROM movimento;
+ROLLBACK;
+SELECT * FROM movimento;
+
+CREATE FUNCTION atualizarMovimento(char(10), integer, integer) returns integer as
+    $$
+    UPDATE movimento SET qtde = $3 where
+        nro_ped = $1 AND cod_prod = $2;
+    select 1;
+    $$
+    LANGUAGE SQL;
+BEGIN TRANSACTION;
+SELECT * FROM movimento;
+SELECT atualizarMovimento('ped1',1,21);
+SELECT * FROM movimento;
+ROLLBACK;
+
+
+CREATE OR REPLACE FUNCTION atualizarPrecoProduto(integer, decimal(5,2)) 
+-- setof é uma tipagem usada para retornar um conjunto de dados
+	returns setof produto AS 
+	$$
+	UPDATE produto set preco = preco * (1.00 + $2/100.00)
+		where cod_prod = $1;
+	select * from produto ;
+	$$
+LANGUAGE SQL;
+
+BEGIN TRANSACTION;
+select * from produto;
+select atualizarPrecoProduto(1,10.00)
+ROLLBACK;

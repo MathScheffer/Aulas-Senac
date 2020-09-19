@@ -1,0 +1,43 @@
+/*Monte uma visão chamada de v_TotalPedido, no qual retorne o total, em valores, de
+pedidos feitos, por cliente e pedido. Para isso deve ser lida a coluna total_mov da
+tabela de movimento. */
+--CREATE VIEW v_TotalPedido AS
+
+CREATE OR REPLACE VIEW v_TotalPedido AS
+	select   pe.nro_ped, 
+			c.nome, 
+			resultado.totalPed,
+			c.cod_cli
+			from cliente c, pedido pe,
+			(select nro_ped as numeroPedido, sum(total_mov) totalPed  from movimento group by nro_ped) resultado
+			WHERE resultado.numeroPedido = pe.nro_ped AND
+				pe.cod_cli = c.cod_cli
+select * from v_TotalPedido
+
+	
+/*
+Monte um procedimento chamado de atualizarTotalPedido (função de escrita) no qual
+receba como parâmetro, o código do cliente, tipo char(10), e atualize os pedidos
+(coluna total_ped) apenas do respectivo cliente enviado como parâmetro
+*/
+drop function  atualizarTotalPed
+CREATE OR REPLACE FUNCTION atualizarTotalPed(char(10)) RETURNS SETOF pedido AS
+	$$
+	UPDATE pedido SET total_ped = (select totalped FROM v_TotalPedido WHERE cod_cli = $1)
+		WHERE pedido.nro_ped = (select nro_ped from pedido where cod_cli = $1);
+	SELECT * from pedido where cod_cli = $1
+	$$
+	LANGUAGE SQL;
+	
+BEGIN TRANSACTION;
+
+select atualizarTotalPed('c2');
+select atualizarTotalPed('c1');
+select atualizarTotalPed('c4');
+select * from pedido order by nro_ped asc;
+
+ROLLBACK;
+/*
+DICA: use o comando de UPDATE com a view. Cuide para que apenas os pedidos do cliente
+informado no parâmetro da função, seja alterado.
+*/
