@@ -1,0 +1,100 @@
+create table ex_motorista
+(cnh char(5) primary key,
+nome varchar(20) not null,
+totalMultas decimal(9,2) );
+select * from ex_motorista;
+
+create table ex_multa
+(id serial primary key,
+cnh char(5) references ex_motorista(cnh) not null,
+velocidadeApurada decimal(5,2) not null,
+velocidadeCalculada decimal(5,2),
+pontos integer not null,
+valor decimal(9,2) not null);
+select * from ex_multa;
+
+insert into ex_motorista values
+('123AB', 'Carlo');
+
+insert into ex_motorista values
+('123AC', 'Jose');
+
+insert into ex_multa(cnh,velocidadeApurada,velocidadeCalculada,pontos,valor)
+	VALUES('123AC',200, 180, 20, 34);
+	
+insert into ex_multa(cnh,velocidadeApurada,velocidadeCalculada,pontos,valor)
+	VALUES('123AC',400, 380, 40, 64);
+
+CREATE OR REPLACE FUNCTION FN_DESCARTAR_RESULT( ) RETURNS VOID AS $$
+BEGIN
+-- EXECUTA O SELECT MAS DESCARTA O RESULTADO
+PERFORM * FROM EX_MULTA;
+-- VARIÁVEL QUE É LIGADA SE O COMANDO ANTERIOR (SELECT, UPDATE, INSERT, DELETE) AFETOU AO MENOS UMA LINHA
+IF FOUND THEN
+RAISE NOTICE 'HÁ MULTAS CADASTRADAS NO SISTEMA';
+END IF;
+RETURN;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+SELECT FN_DESCARTAR_RESULT();
+
+
+CREATE OR REPLACE FUNCTION FN_TRATAR_ERRO(_CNH CHAR(5)) RETURNS VOID AS
+$$
+<<BLOCO_A>>
+DECLARE
+_MULTA RECORD;
+_MOTORISTA RECORD;
+BEGIN
+SELECT * INTO _MOTORISTA FROM EX_MOTORISTA WHERE cnh = _CNH;
+IF NOT FOUND THEN
+ RAISE EXCEPTION 'MOTORISTA % NÃO ENCONTRADO', _CNH;
+END IF;
+END;
+$$ LANGUAGE PLPGSQL;
+select FN_TRATAR_ERRO('123AX');
+
+
+CREATE OR REPLACE FUNCTION FN_TRATAR_ERRO(_CNH CHAR(5)) RETURNS VOID AS
+$$
+<<BLOCO_A>>
+DECLARE
+_MULTA RECORD;
+_MOTORISTA RECORD;
+BEGIN
+SELECT * INTO _MOTORISTA FROM EX_MOTORISTA WHERE cnh = _CNH;
+
+    IF NOT FOUND THEN
+    RAISE EXCEPTION 'MOTORISTA % NÃO ENCONTRADO', _CNH;
+    END IF;
+
+    BEGIN
+        SELECT * into STRICT --ignora o "pegar SÓ a primeira linha" e pega todas as linhas
+        _MULTA FROM EX_MULTA WHERE CNH = _CNH;
+
+        EXCEPTION
+            WHEN NO_DATA_FOUND THEN
+            RAISE NOTICE 'MOTORISTA % NÃO ENCONTRADO EM MULTAS', BLOCO_A._MOTORISTA.NOME;
+            WHEN TOO_MANY_ROWS THEN
+            RAISE EXCEPTION 'MOTORISTA % POSSUI VARIAS MULTAS', BLOCO_A._MOTORISTA.NOME;
+            WHEN OTHERS THEN
+            RAISE NOTICE '%', SQLSTATE ;
+            RAISE NOTICE '%', SQLERRM;
+    END;
+RETURN;
+END;
+$$ LANGUAGE PLPGSQL;
+
+select FN_TRATAR_ERRO('123AB');
+
+
+-- INSERINDO UM MOTORISTA SEM MULTAS
+INSERT INTO EX_MOTORISTA VALUES ('369EF', 'ANA');
+
+-- EXECUTANDO OS PROCEDIMENTOS
+-- TESTE I : MOTORISTA NÃO ENCONTRADO
+SELECT FN_TRATAR_ERRO('369EC');
+-- TESTE II : MOTORISTA SEM MULTAS
+SELECT FN_TRATAR_ERRO('369EF');
