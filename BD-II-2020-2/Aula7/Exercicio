@@ -8,92 +8,74 @@ valor;
 duas regras acima citadas.*/
 
 
-select * from pedido;
-select * from cliente;
-select * from movimento;
-select * from produto;
-
 DROP FUNCTION FN_MOVIMENTAR(int, int, char, double precision, char);
-CREATE OR REPLACE FUNCTION FN_MOVIMENTAR(chave int, _cod_prod int, nome char(30),
-										 preco double precision, categoria char(30))
-	RETURNs VOID AS
-	$$
-	<<principal>>
-	DECLARE
-		_PRODUTO_EXISTE int;
-		_PRODUTO_PEDIDO int;
-	BEGIN
-	
-	SELECT cod_prod INTO _PRODUTO_EXISTE FROM produto WHERE cod_prod = _cod_prod  LIMIT 1;
-	IF NOT FOUND THEN
-		RAISE EXCEPTION 'Produto % não existe!',_cod_prod;
-		
-	SELECT p.cod_prod  INTO _PRODUTO_PEDIDO FROM produto as p, movimento
-					WHERE p.cod_prod = movimento.cod_prod
-					AND p.cod_prod = 1 LIMIT 1;	
-					
-	BEGIN
-		IF chave = 1 THEN
-			RAISE NOTICE 'Chave vai adicionar produto';
 
-		ELSIF chave = 0 THEN
-
-			RAISE NOTICE 'Chave indica que irá excluir pedido';
-
-			/*<<verifica_produto>>
-			BEGIN
-				SELECT cod_prod INTO _PRODUTO_EXISTE FROM produto WHERE cod_prod = _cod_prod  LIMIT 1;
-				EXCEPTION
-					WHEN NO_DATA_FOUND THEN
-						RAISE EXCEPTION 'Produto de código % não existe', _cod_prod;
-			END;
-			<<verifica_produto_pedido>>
-			BEGIN
-				SELECT p.cod_prod  INTO _PRODUTO_PEDIDO FROM produto as p, movimento
-					WHERE p.cod_prod = movimento.cod_prod
-					AND p.cod_prod = 1 LIMIT 1;	
-			END;*/
-			
-			IF _PRODUTO_EXISTE NOTNULL 
-				AND _PRODUTO_PEDIDO ISNULL
-				THEN 
-					DELETE  FROM produto WHERE cod_prod = _cod_prod;
-					RAISE NOTICE 'Produto % excluído!', nome;
-			ELSE
-				raise notice 'não foi possível excluir.';
-			END IF;
-
-		ELSE
-			RAISE EXCEPTION 'Chave % não é suportada! ', chave;
-		END IF;
-		END;
-END;
-$$ LANGUAGE PLPGSQL;
-	
-SELECT FN_MOVIMENTAR('3',7,'teste',00.00,'prod de teste')
-
-DROP FUNCTION bla(integer);
-CREATE OR REPLACE FUNCTION BLA(_cod_prod int) RETURNS VOID AS
+CREATE OR REPLACE FUNCTION FN_MOVIMENTAR(chave int, _cod_prod int, _nome char(30),
+										 _preco double precision, _categoria char(30))
+RETURNS VOID AS
 $$
-<<principal>>
-DECLARE
-	PRODUTO_EXISTE int;
 BEGIN
-	BEGIN
-		SELECT * INTO STRICT principal.PRODUTO_EXISTE from produto where produto.cod_prod = _cod_prod;
-		EXCEPTION
-			WHEN NO_DATA_FOUND THEN
-				RAISE EXCEPTION 'Produto de código % não existe', _cod_prod;
-	END;
-	DELETE FROM produto WHERE produto.cod_prod = _cod_prod;
+	IF chave = 0 THEN	
+		IF(SELECT  fn_verifica_prod_NAO_pedido(_cod_prod)) THEN
+			DELETE FROM produto WHERE produto.cod_prod = _cod_prod;
+		ELSE
+			RAISE EXCEPTION 'Produto foi pedido';
+		END IF;
+	ELSIF chave = 1 THEN
+		IF (NOT fn_verifica_produto_existe(_cod_prod)) THEN
+			INSERT INTO produto(cod_prod,nome, preco, categoria) 
+				VALUES(_cod_prod,_nome,_preco,_categoria);
+		ELSE 
+			RAISE EXCEPTION 'O código inserido já existe';
+		END IF;
+	ELSE 
+		RAISE EXCEPTION 'Insira somente 0 para deletar ou 1 para inserir';
+	END IF;
 END;
-$$ LANGUAGE PLPGSQL;
-	
+$$ LANGUAGE PLPGSQL
+
+
+
 BEGIN TRANSACTION
-	SELECT  BLA(6);
-	SELECT FN_MOVIMENTAR('0',1,'teste',00.00,'prod de teste')
-	DELETE FROM produto WHERE produto.cod_prod = 6;
-ROLLBACK
+	INSERT INTO produto(cod_prod,nome, preco, categoria) VALUES(7,'teste',20.0,'teste')
+	select FN_MOVIMENTAR(0, 1, 'teste',0.0, 'teste') -- Retorna exceção de produto já pedido
+	select FN_MOVIMENTAR(1, 1, 'teste',0.0, 'teste') -- Não insere pois já existe pedido com este cod
+	select FN_MOVIMENTAR(0, 7, 'teste',0.0, 'teste') -- Deleta pedido
+	select fn_movimentar(1,7,'Notebook dell',4500.5,'informatica') -- Insere pedido
+rollback;
+
 select * from produto;
-	
-	
+
+
+DROP FUNCTION fn_verifica_prod_NAO_pedido(int)
+CREATE OR REPLACE FUNCTION fn_verifica_prod_NAO_pedido(codProd int) RETURNS BOOLEAN AS
+$$
+BEGIN
+	PERFORM * FROM movimento WHERE cod_prod = codProd;
+	IF FOUND THEN
+		RETURN FALSE;
+	ELSE 
+		return TRUE;
+	END IF;
+END;
+$$
+LANGUAGE PLPGSQL;
+SELECT  fn_verifica_prod_NAO_pedido(2);
+
+CREATE OR REPLACE FUNCTION fn_verifica_produto_existe(_cod_produto int) RETURNS BOOLEAN AS
+$$
+BEGIN
+	PERFORM * FROM produto WHERE cod_prod = _cod_produto;
+	IF FOUND THEN
+		RETURN TRUE;
+	ELSE
+		RETURN FALSE;
+	END IF;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+SELECT fn_verifica_produto_existe(8) 
+
+
+
