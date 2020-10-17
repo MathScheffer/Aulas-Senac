@@ -1,0 +1,111 @@
+/*
+
+    TEMP TABLE
+
+*/
+
+CREATE OR REPLACE FUNCTION FN_TEXTO_VALOR_MULTA (_VALOR DECIMAL(8,2)) RETURNS VARCHAR(30) AS
+$$
+DECLARE
+_MSG VARCHAR(30);
+BEGIN
+_MSG := 'DEVE 1000 EM MULTAS';
+IF _VALOR < 1000.00 THEN
+_MSG := 'MENOS DE 1000 EM MULTAS';
+ELSIF _VALOR > 1000.00 THEN
+_MSG := 'MAIS DE 1000 EM MULTAS';
+ELSIF _VALOR IS NULL THEN
+_MSG:= 'SEM MULTAS';
+END IF;
+-- SOMENTE A PARTIR DA VERSÃO 8.4
+/*CASE
+WHEN (_VALOR < 1000) THEN _MSG := 'MENOS DE 1000 EM MULTAS‘;
+WHEN (_VALOR > 1000.00) THEN _MSG := 'MAIS DE 1000 EM MULTAS‘;
+WHEN (_VALOR IS NULL) THEN _MSG := 'SEM MULTAS‘;
+END CASE;*/
+RETURN _MSG;
+END;
+$$ LANGUAGE PLPGSQL;
+
+select nome, FN_TEXTO_VALOR_MULTA (TOTALMULTAS) , totalmultas from ex_motorista
+
+
+
+/*
+
+    CURSOR
+
+*/
+/*
+	ATENÇÃO:
+	Ao se trabalhar com update utilizando cursores, há probabilidades dos ponteiros
+	se perderem ao alterar a própria tabela em que o cursor é CARREGADOR.
+
+*/
+CREATE OR REPLACE FUNCTION FN_ATUALIZAR_TOTAL_MULTA( ) RETURNS VOID AS
+ $$
+ DECLARE
+ _CURSOR_MOTORISTA REFCURSOR;
+ _CNH VARCHAR(5);
+ BEGIN
+
+ OPEN _CURSOR_MOTORISTA FOR
+ SELECT CNH FROM EX_MOTORISTA;
+
+ FETCH _CURSOR_MOTORISTA INTO _CNH;
+
+ WHILE FOUND LOOP
+ UPDATE EX_MOTORISTA
+ SET TOTALMULTAS = (SELECT FN_OBTER_TOTAL_MULTA(_CNH))
+ WHERE CNH = _CNH;
+
+ FETCH _CURSOR_MOTORISTA INTO _CNH;
+ END LOOP;
+ CLOSE _CURSOR_MOTORISTA;
+ RETURN;
+ END;
+ $$
+ LANGUAGE PLPGSQL;
+
+ SELECT FN_ATUALIZAR_TOTAL_MULTA( );
+
+
+
+ /*
+	RESOLVENDO O PROBLEMA ACIMA:
+	Criamos uma TEMP TABLE para carregar o cursor, assim, a table que o cursor
+faz referência nunca é alterada, deixando a tabela que desejamos alterar fique
+livre:
+
+*/
+CREATE OR REPLACE FUNCTION FN_ATUALIZAR_TOTAL_MULTA( ) RETURNS VOID AS
+    $$
+    DECLARE
+        _CURSOR_MOTORISTA REFCURSOR;
+        _CNH VARCHAR(5);
+    BEGIN
+    --Criar a tabela temporária:
+        CREATE TEMP TABLE TMP_EX_MOTORISTA(cnh varchar(5), nome varchar(20));
+        --Abrir o CURSOR apartir da tabela temporária:
+        OPEN _CURSOR_MOTORISTA FOR
+            SELECT CNH FROM TMP_EX_MOTORISTA;
+
+        FETCH _CURSOR_MOTORISTA INTO _CNH;
+
+        WHILE FOUND LOOP
+            UPDATE EX_MOTORISTA
+                SET TOTALMULTAS = (SELECT FN_OBTER_TOTAL_MULTA(_CNH))
+                WHERE CNH = _CNH;
+
+            FETCH _CURSOR_MOTORISTA INTO _CNH;
+        END LOOP;
+
+        CLOSE _CURSOR_MOTORISTA;
+        
+        RETURN;
+    END;
+    $$
+    LANGUAGE PLPGSQL;
+
+    SELECT FN_ATUALIZAR_TOTAL_MULTA( );
+
