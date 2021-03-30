@@ -1,8 +1,15 @@
 class Produto{
-    constructor(id, nome, preco) {
-        this.id = id
+    constructor(nome, preco) {
         this.nome = nome
-        this.preco =preco
+        this.preco = preco
+    }
+
+    getNome(){
+        return this.nome;
+    }
+
+    getPreco(){
+        return this.preco;
     }
 }
 
