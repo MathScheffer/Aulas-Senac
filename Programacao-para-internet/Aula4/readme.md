@@ -1,0 +1,1 @@
+npm init -y -> Cria um package.json básico para inicializar a aplicação
