@@ -1,27 +1,17 @@
-const mysql = require('mysql');
+const ProdutosApi = require('./api/ProdutosApi');
+const Produto = require('./classes/Produto');
 
-let con = mysql.createConnection({
-    host:"127.0.0.1",
-    user:'root',
-    password:'',
-    database:"crud_produtos_db"
-})
+//instancias
+const produtosApi = new ProdutosApi();
 
-con.connect((error)=> {
-    if(error){
-        throw error;
-    }else{
-        console.log("conectado");
-    }
 
-/*     con.query("INSERT INTO produtos(nome, preco) VALUES (?,?)",["arroz",30.0],(err,result)=>{
-        if(error) throw error;
-        console.log(JSON.stringify(result))
-    }); */
+/* produtosApi.listar(function(err, produtos){
+    if(err) throw err;
+    console.log( produtos);
+}); */
 
-    let sql = "SELECT * FROM PRODUTOS";
-    con.query(sql, (err,result) => {
-        if(err) throw err;
-        console.log(result);
-    })
-})
+produtosApi.getAllProd(function(err, produtos){
+    if(err) throw err;
+    console.log(produtos);
+});
+

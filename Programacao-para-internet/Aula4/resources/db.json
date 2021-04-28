@@ -1,0 +1,9 @@
+{
+    "db_produtos":{
+        "host":"127.0.0.1",
+        "user":"root",
+        "password":"",
+        "dbName":"crud_produtos_db"
+    }
+}
+    
