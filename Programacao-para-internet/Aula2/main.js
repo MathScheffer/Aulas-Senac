@@ -39,7 +39,7 @@ cadastroProdutos.insert(alface);
 */
 
 cadastroProdutos.selectByPreco(0.5).then(produtos => console.log(produtos))
-
+cadastroProdutos.sincronizar();
 /* 
 let teste = new Produto("teste","teste");
 cadastroProdutos.insert(teste);

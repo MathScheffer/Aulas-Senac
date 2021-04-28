@@ -48,6 +48,18 @@ class CadastroProdutos {
     listar(){
         return this.produtos;
     }
+
+    buscarPorCodigo(codigo){
+        for(let prod of this.produtos) {
+            if(prod.codigo == codigo){
+                
+            }
+        }
+    }
+
+    sincronizar(){
+        this.conexao.sincronizarTabela(this.Produto);
+    }
 //TODO: usar o id do produto para deletá-lo
     deletar(id) {
         this.produtos = this.produtos.filter(produto => {
