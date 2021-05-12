@@ -28,16 +28,16 @@ app.get('/produto/:id',(req,res) => {
     res.send('chegou na request por id')
 })
 
-
+let produtos = ['banana','maçã','morango'];
 app.post('/produto',(req,res) => {
-    const produtos = ['banana','maçã','morango'];
-    produtos.push[req.body.produto]
+    produtos.push(req.body.produto)
+    console.log(produtos)
     console.log(req.body.produto)
     res.send(produtos)
 })
 
 app.put('/produto/:id',(req,res)=>{
-    const index = req.body.index;
+    const index = req.params.id;
     produtos[index] = req.body.nome_produto;
 
     res.send(produtos);
