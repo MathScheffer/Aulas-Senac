@@ -26,13 +26,13 @@ exports.validarToken = (req,res,next) => {
             if(err){
                 const error = {
                     status:403,
-                    message:"Token invalido"
+                    message:"Token invalido!"
                 }
                 res.status(error.status).json({error})
             }else{
+                console.log(payload)
                 next();
-            }
-            
+            }     
         })
     }
 }
