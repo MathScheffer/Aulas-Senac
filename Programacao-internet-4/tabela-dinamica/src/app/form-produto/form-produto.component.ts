@@ -25,8 +25,8 @@ export class FormProdutoComponent extends AppComponent implements OnInit {
       preco: parseInt(preco)
     }
 
-    AppComponent.PRODUTOS.push(novoProduto);
-    /* this.addProduto(novoProduto) */
+    /* AppComponent.PRODUTOS.push(novoProduto); */
+    this.addProduto(novoProduto)
   }
 
 

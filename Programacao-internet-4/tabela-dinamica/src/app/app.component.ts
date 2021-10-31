@@ -22,7 +22,7 @@ export class AppComponent {
     return AppComponent.PRODUTOS;
   }
 
-  set addProduto(produto: any){
+  addProduto(produto: any){
     AppComponent.PRODUTOS.push(produto);
   }
 
