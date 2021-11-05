@@ -6,13 +6,17 @@
             <td>Id</td>
             <td>Nome</td>
             <td>Preco</td>
+            <td>Marca</td>
+            <td>Validade</td>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let prod of produtos">
             <td>{{prod.id}}</td>
             <td>{{prod.nome}}</td>
-            <td>{{prod.preco}}</td>
+            <td>{{prod.preco | moeda}}</td>
+            <td>{{prod.marca | uppercase}}</td>
+            <td>{{prod.validade | date: 'dd/MM/YYYY'}}</td>
         </tr>
     </tbody>
 </table>

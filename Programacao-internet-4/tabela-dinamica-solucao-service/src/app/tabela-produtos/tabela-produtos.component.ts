@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Produto } from '../produto';
 import { ProdutosService } from '../produtos.service';
 
 
@@ -11,7 +12,7 @@ export class TabelaProdutosComponent implements OnInit {
   @Input('nome') name = '';
   @Input() listaProdutos: any[] = []
 
-  produtos: any[] = [];
+  produtos: Produto[] = [];
   constructor(private produtosService: ProdutosService) { 
   }
   

@@ -5,11 +5,18 @@
 <br />
 
 <label for="nome">Nome:</label>
-<input [(ngModel)]="produto.nome" id="nome">
+<input type="text" [(ngModel)]="produto.nome" id="nome">
 <br />
 
 <label for="preco">Preco:</label>
-<input [(ngModel)]="produto.preco" id="preco">
+<input type="number" [(ngModel)]="produto.preco" id="preco">
+<br />
+
+<label for="marca">Marca:</label>
+<input type="text" [(ngModel)]="produto.marca" id="marca">
+<br />
+<label for="validade">Validade:</label>
+<input type="date" [(ngModel)]="produto.validade" id="validade">
 <br />
 
 <button (click)="cadastrar()" >Cadastrar</button>
