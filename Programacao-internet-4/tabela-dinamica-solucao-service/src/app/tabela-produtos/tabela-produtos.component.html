@@ -1,6 +1,8 @@
 <h1>{{name}}</h1>
-
-<table *ngIf="produtos.length > 0">
+<label>Pesquisar: </label>
+<input type="text" [(ngModel)] = "nomePesquisado" placeholder="nome">
+<br/>
+<table *ngIf="produtos.length > 0" >
     <thead>
         <tr>
             <td>Id</td>
@@ -11,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let prod of produtos">
+        <tr *ngFor="let prod of produtos | filtroPesquisa: nomePesquisado">
             <td>{{prod.id}}</td>
             <td>{{prod.nome}}</td>
             <td>{{prod.preco | moeda}}</td>

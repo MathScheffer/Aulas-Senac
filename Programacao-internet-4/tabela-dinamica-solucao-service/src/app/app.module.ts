@@ -6,17 +6,21 @@ import { TabelaProdutosComponent } from './tabela-produtos/tabela-produtos.compo
 import { FormProdutosComponent } from './form-produtos/form-produtos.component';
 import { FormsModule } from '@angular/forms';
 import { MoedaPipe } from './pipe/moeda.pipe';
+import { FiltroPesquisaPipe } from './pipe/filtro-pesquisa.pipe';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     TabelaProdutosComponent,
     FormProdutosComponent,
-    MoedaPipe
+    MoedaPipe,
+    FiltroPesquisaPipe
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

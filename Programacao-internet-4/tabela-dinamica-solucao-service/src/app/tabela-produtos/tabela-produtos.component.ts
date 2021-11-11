@@ -13,6 +13,8 @@ export class TabelaProdutosComponent implements OnInit {
   @Input() listaProdutos: any[] = []
 
   produtos: Produto[] = [];
+  nomePesquisado = "";
+  
   constructor(private produtosService: ProdutosService) { 
   }
   
