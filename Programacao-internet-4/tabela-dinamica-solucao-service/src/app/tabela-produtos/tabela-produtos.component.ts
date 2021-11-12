@@ -9,12 +9,12 @@ import { ProdutosService } from '../produtos.service';
   styleUrls: ['./tabela-produtos.component.css']
 })
 export class TabelaProdutosComponent implements OnInit {
-  @Input('nome') name = '';
+  @Input('nome') name = 'Tabela de Produtos';
   @Input() listaProdutos: any[] = []
 
   produtos: Produto[] = [];
   nomePesquisado = "";
-  
+
   constructor(private produtosService: ProdutosService) { 
   }
   

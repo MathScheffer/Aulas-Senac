@@ -19,4 +19,5 @@
 <input type="date" [(ngModel)]="produto.validade" id="validade">
 <br />
 
-<button (click)="cadastrar()" >Cadastrar</button>
+<button redirectLink="tabela" (click)="cadastrar()" >{{botaoAcao}}</button>
+<button redirectLink="tabela" (click)="cancelar()" >Cancelar</button>
