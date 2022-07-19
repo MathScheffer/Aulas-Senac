@@ -1,0 +1,27 @@
+<h1>{{name}}</h1>
+<label>Pesquisar: </label>
+<input type="text" [(ngModel)]="nomePesquisado" placeholder="nome">
+<br/>
+<table *ngIf="produtos.length > 0" >
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NOME</th>
+            <th>PREÇO</th>
+            <th>AÇÃO</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let prod of produtos | filtroPesquisa:nomePesquisado">
+            <td>{{prod._id}}</td>
+            <td>{{prod.nome}}</td>
+            <td>{{prod.preco | moeda}}</td>
+            <td><a routerLink="/edit/{{prod._id}}">Editar</a></td>
+            <td><a [routerLink]="" (click)="deletar(prod._id)">Deletar</a></td>
+        </tr> 
+    </tbody>
+</table>
+
+
+
+
